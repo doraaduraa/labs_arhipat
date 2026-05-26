@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'org.example'
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+}
+
+application {
+    mainClass = 'org.example.lab3.Lab3Application'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+tasks.register('printVersion') {
+    group = 'verification'
+    description = 'Виводить поточну версію проєкту'
+    doLast {
+        println "Поточна версія проєкту: ${project.version}"
+    }
+}
